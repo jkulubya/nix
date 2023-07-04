@@ -2,8 +2,22 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, pkgs, ... }:
+{ config, nixpkgs, nixpkgs-unstable, ... }:
 
+let
+  system = "x86_64-linux";                                  # System architecture
+
+  pkgs = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;                              # Allow proprietary software
+  };
+
+  unstable = import nixpkgs {
+    inherit system;
+    config.allowUnfree = true;                              # Allow proprietary software
+  };
+
+in
 {
   imports =
     [ # Include the results of the hardware scan.
@@ -79,19 +93,21 @@
   users.users.james = {
     isNormalUser = true;
     description = "james";
-    extraGroups = [ "networkmanager" "wheel" ];
-    packages = with pkgs; [
+    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" ];
+    shell = unstable.zsh;
+    packages = with unstable; [
       firefox
     #  thunderbird
     ];
   };
 
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
+  # User does not need to give password when using sudo.
+  security.sudo.wheelNeedsPassword = false;
+
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with pkgs; [
+  environment.systemPackages = with unstable; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
@@ -114,8 +130,31 @@
   # networking.firewall.allowedUDPPorts = [ ... ];
   # Or disable the firewall altogether.
   # networking.firewall.enable = false;
+  nix = {
+    settings = {
+        auto-optimise-store = true;
+        experimental-features = ["nix-command" "flakes"];
+    };
+    gc = {
+        automatic = true;
+        dates = "weekly";
+        options = "--delete-older-than 5d";
+   };
+   package = unstable.nixVersions.unstable;
+   registry.nixpkgs.flake = nixpkgs;
+   extraOptions = ''
+       experimental-features = nix-command flakes
+       keep-outputs          = true
+       keep-derivations      = true
+   ''; 
+  };
 
-  nix.settings.experimental-features = ["nix-command" "flakes"];
+  programs = {
+    zsh = {
+      enable = true;
+    };
+  };
+
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
   # on your system were taken. It‘s perfectly fine and recommended to leave
