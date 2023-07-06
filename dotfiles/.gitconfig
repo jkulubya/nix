@@ -1,0 +1,17 @@
+[user]
+  email = jameskitamirike@gmail.com
+  name = JK
+
+[core]
+  excludesfile = /User/james/.gitignore
+  editor = nano
+  autocrlf = input
+
+[init]
+  defaultBranch = main
+
+[filter "lfs"]
+  clean = git-lfs clean -- %f
+  smudge = git-lfs smudge -- %f
+  process = git-lfs filter-process
+  required = true
