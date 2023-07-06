@@ -2,26 +2,12 @@
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
 
-{ config, nixpkgs, nixpkgs-unstable, ... }:
-
-let
-  system = "x86_64-linux";                                  # System architecture
-
-  pkgs = import nixpkgs {
-    inherit system;
-    config.allowUnfree = true;                              # Allow proprietary software
-  };
-
-  unstable = import nixpkgs {
-    inherit system;
-    config.allowUnfree = true;                              # Allow proprietary software
-  };
-
-in
+{ inputs, lib, config, pkgs, ... }:
 {
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.home-manager.nixosModules.home-manager
     ];
 
   # Bootloader.
@@ -37,7 +23,7 @@ in
   boot.initrd.luks.devices."luks-742887e3-845e-49e1-b1ad-ad9123e65dd6".device = "/dev/disk/by-uuid/742887e3-845e-49e1-b1ad-ad9123e65dd6";
   boot.initrd.luks.devices."luks-742887e3-845e-49e1-b1ad-ad9123e65dd6".keyFile = "/crypto_keyfile.bin";
 
-  networking.hostName = "nixos"; # Define your hostname.
+  networking.hostName = "laptop-dell"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
   # Configure network proxy if necessary
@@ -94,8 +80,8 @@ in
     isNormalUser = true;
     description = "james";
     extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" ];
-    shell = unstable.zsh;
-    packages = with unstable; [
+    shell = pkgs.zsh;
+    packages = with pkgs; [
       firefox
     #  thunderbird
     ];
@@ -107,7 +93,7 @@ in
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
-  environment.systemPackages = with unstable; [
+  environment.systemPackages = with pkgs; [
   #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
   #  wget
   ];
@@ -140,13 +126,19 @@ in
         dates = "weekly";
         options = "--delete-older-than 5d";
    };
-   package = unstable.nixVersions.unstable;
-   registry.nixpkgs.flake = nixpkgs;
+   package = pkgs.nixVersions.unstable;
    extraOptions = ''
        experimental-features = nix-command flakes
        keep-outputs          = true
        keep-derivations      = true
    ''; 
+  };
+
+  home-manager = {
+    extraSpecialArgs = { inherit inputs; };
+    users = {
+      james = import ./home-manager;
+    };
   };
 
   programs = {
