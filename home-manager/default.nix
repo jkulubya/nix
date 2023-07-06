@@ -42,11 +42,16 @@
   };
 
   # Add stuff for your user as you see fit:
-  # programs.neovim.enable = true;
-  # home.packages = with pkgs; [ steam ];
+  home.packages = with pkgs; [ 
+    vscode
+  ];
 
   programs.home-manager.enable = true;
-  programs.git.enable = true;
+  programs.git = {
+    enable = true;
+    package = pkgs.gitFull;
+    extraConfig.credential.helper = "libsecret";
+  };
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";
