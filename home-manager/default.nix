@@ -44,14 +44,31 @@
   # Add stuff for your user as you see fit:
   home.packages = with pkgs; [ 
     vscode
+    firefox
+    hstr
   ];
 
   programs.home-manager.enable = true;
-  programs.git = {
-    enable = true;
-    package = pkgs.gitFull;
-    extraConfig.credential.helper = "libsecret";
+  programs = {
+    git = {
+      enable = true;
+      package = pkgs.gitFull;
+      extraConfig.credential.helper = "libsecret";
+    };
+    zsh = {
+      enable = true;
+      shellAliases = {
+        hh = "hstr";
+      };
+      oh-my-zsh = {
+        enable = true;
+        plugins = [ "git" ];
+        theme = "geoffgarside";
+      };
+    };
   };
+
+  fonts.fontconfig.enable = true;
 
   # Nicely reload system units when changing configs
   systemd.user.startServices = "sd-switch";

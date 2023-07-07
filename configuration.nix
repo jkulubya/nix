@@ -76,27 +76,22 @@
   # services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
-  users.users.james = {
-    isNormalUser = true;
-    description = "james";
-    extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" ];
-    shell = pkgs.zsh;
-    packages = with pkgs; [
-      firefox
-    #  thunderbird
-    ];
+  users = {
+    defaultUserShell = pkgs.zsh;
+    users.james = {
+      isNormalUser = true;
+      description = "james";
+      extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" ];
+    };
   };
+
+  # Many programs look at /etc/shells to determine if a user is a "normal" user and not a "system" user.
+  # Therefore it is recommended to add the user shells to this list.
+  # To add a shell to /etc/shells use the following line in your config: 
+  environment.shells = with pkgs; [ zsh ];
 
   # User does not need to give password when using sudo.
   security.sudo.wheelNeedsPassword = false;
-
-
-  # List packages installed in system profile. To search, run:
-  # $ nix search wget
-  environment.systemPackages = with pkgs; [
-  #  vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-  #  wget
-  ];
 
   # Some programs need SUID wrappers, can be configured further or are
   # started in user sessions.
@@ -141,11 +136,7 @@
     };
   };
 
-  programs = {
-    zsh = {
-      enable = true;
-    };
-  };
+  programs.zsh.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions

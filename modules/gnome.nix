@@ -11,5 +11,8 @@
       switch-windows = [ "<Alt>Tab" ];
       switch-windows-backward = [ "<Shift><Alt>Tab" ];
     };
+    "org/gnome/Console" = {
+      font-scale = 1.2000000000000002;
+    };
   };
 }
