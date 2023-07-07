@@ -50,6 +50,10 @@
 
   programs.home-manager.enable = true;
   programs = {
+    direnv = {
+      enable = true;
+      nix-direnv.enable = true;
+    };
     git = {
       enable = true;
       package = pkgs.gitFull;
@@ -60,6 +64,9 @@
       shellAliases = {
         hh = "hstr";
       };
+      initExtra = ''
+        eval "$(direnv hook zsh)"
+      '';
       oh-my-zsh = {
         enable = true;
         plugins = [ "git" ];
