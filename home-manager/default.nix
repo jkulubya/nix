@@ -43,9 +43,10 @@
 
   # Add stuff for your user as you see fit:
   home.packages = with pkgs; [ 
-    vscode
     firefox
     hstr
+    jetbrains.idea-community
+    vscode
   ];
 
   programs.home-manager.enable = true;
