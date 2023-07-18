@@ -51,6 +51,11 @@
 
   programs.home-manager.enable = true;
   programs = {
+    vim = {
+      enable = true;
+      extraConfig = lib.fileContents ../dotfiles/.vimrc;
+      defaultEditor = true;
+    };
     direnv = {
       enable = true;
       nix-direnv.enable = true;
