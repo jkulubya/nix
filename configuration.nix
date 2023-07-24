@@ -23,15 +23,12 @@
   boot.initrd.luks.devices."luks-742887e3-845e-49e1-b1ad-ad9123e65dd6".device = "/dev/disk/by-uuid/742887e3-845e-49e1-b1ad-ad9123e65dd6";
   boot.initrd.luks.devices."luks-742887e3-845e-49e1-b1ad-ad9123e65dd6".keyFile = "/crypto_keyfile.bin";
 
-  networking.hostName = "laptop-dell"; # Define your hostname.
-  # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking = {
+    hostName = "laptop-dell";
 
-  # Configure network proxy if necessary
-  # networking.proxy.default = "http://user:password@proxy:port/";
-  # networking.proxy.noProxy = "127.0.0.1,localhost,internal.domain";
-
-  # Enable networking
-  networking.networkmanager.enable = true;
+    # Enable networking
+    networkmanager.enable = true;
+  };
 
   # Set your time zone.
   time.timeZone = "Africa/Johannesburg";
@@ -75,6 +72,11 @@
       #media-session.enable = true;
     };
 
+    tailscale = {
+      enable = true;
+      port = 41641;
+    };
+
     # Enable touchpad support (enabled default in most desktopManager).
     # xserver.libinput.enable = true;
   };
@@ -98,24 +100,6 @@
   # User does not need to give password when using sudo.
   security.sudo.wheelNeedsPassword = false;
 
-  # Some programs need SUID wrappers, can be configured further or are
-  # started in user sessions.
-  # programs.mtr.enable = true;
-  # programs.gnupg.agent = {
-  #   enable = true;
-  #   enableSSHSupport = true;
-  # };
-
-  # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
   nix = {
     settings = {
         auto-optimise-store = true;

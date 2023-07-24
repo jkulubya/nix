@@ -47,10 +47,11 @@
     hstr
     jetbrains.idea-community
     vscode
+    tailscale
   ];
 
-  programs.home-manager.enable = true;
   programs = {
+    home-manager.enable = true;
     vim = {
       enable = true;
       extraConfig = lib.fileContents ../dotfiles/.vimrc;
