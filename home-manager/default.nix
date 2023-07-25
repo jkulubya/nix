@@ -47,6 +47,7 @@
     hstr
     jetbrains.idea-community
     tailscale
+    insomnia
   ];
 
   programs = {
