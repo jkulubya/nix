@@ -3,7 +3,7 @@
   name = JK
 
 [core]
-  excludesfile = /User/james/.gitignore
+  excludesfile = ~/.gitignore
   editor = nano
   autocrlf = input
 

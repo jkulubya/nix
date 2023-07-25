@@ -46,12 +46,15 @@
     firefox
     hstr
     jetbrains.idea-community
-    vscode
     tailscale
   ];
 
   programs = {
     home-manager.enable = true;
+    vscode = {
+      enable = true;
+      package = pkgs.vscode.fhs;
+    };
     vim = {
       enable = true;
       extraConfig = lib.fileContents ../dotfiles/.vimrc;
