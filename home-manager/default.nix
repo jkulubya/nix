@@ -52,6 +52,7 @@
     zoom-us
     font-awesome
     gnome.gnome-keyring
+    ubuntu_font_family
   ];
 
   programs = {
@@ -90,7 +91,21 @@
     };
   };
 
-
+  gtk = {
+    enable = true;
+    theme = {
+      name = "Adwaita";
+      package = "${pkgs.gnome.gnome-themes-extra}";
+    };
+    iconTheme = {
+      name = "Adwaita";
+      package = "${pkgs.gnome.gnome-themes-extra}";
+    };
+    cursorTheme = {
+      name = "Adwaita";
+      package = "${pkgs.gnome.gnome-themes-extra}";
+    };
+  };
 
   fonts.fontconfig.enable = true;
 

@@ -16,7 +16,7 @@
       config = {
         modifier = "Mod4";
         fonts = {
-          names = ["DejaVu Sans Mono, FontAwesome 6 Free"];
+          names = ["Ubuntu, DejaVu Sans Mono, FontAwesome 6 Free"];
           size = 11.0;
         };    
         bars = [
