@@ -46,9 +46,9 @@
       # Enable the X11 windowing system.
       enable = true;
 
-      # Enable the GNOME Desktop Environment.
-      displayManager.gdm.enable = true;
-      desktopManager.gnome.enable = true;
+      windowManager.i3.enable = true;
+
+      displayManager.defaultSession = "none+i3";
 
       # Configure keymap in X11
       layout = "us";
@@ -78,7 +78,10 @@
     };
 
     # Enable touchpad support (enabled default in most desktopManager).
-    # xserver.libinput.enable = true;
+    xserver.libinput = {
+      enable = true;
+      touchpad.naturalScrolling = true;
+    };
   };
 
 

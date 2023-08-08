@@ -5,7 +5,7 @@
   # You can import other home-manager modules here
   imports = [
     ../dotfiles
-    ../modules/gnome.nix
+    ../modules/i3.nix
     # If you want to use home-manager modules from other flakes (such as nix-colors):
     # inputs.nix-colors.homeManagerModule
 
@@ -50,6 +50,7 @@
     tailscale
     insomnia
     zoom-us
+    font-awesome
   ];
 
   programs = {
