@@ -43,11 +43,13 @@
 
   # Add stuff for your user as you see fit:
   home.packages = with pkgs; [ 
+    azuredatastudio
     firefox
     hstr
     jetbrains.idea-community
     tailscale
     insomnia
+    zoom-us
   ];
 
   programs = {
