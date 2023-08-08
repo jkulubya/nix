@@ -51,6 +51,7 @@
     insomnia
     zoom-us
     font-awesome
+    gnome.gnome-keyring
   ];
 
   programs = {
@@ -88,6 +89,8 @@
       };
     };
   };
+
+
 
   fonts.fontconfig.enable = true;
 
