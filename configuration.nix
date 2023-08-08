@@ -47,8 +47,14 @@
       enable = true;
 
       windowManager.i3.enable = true;
-
-      displayManager.defaultSession = "none+i3";
+      desktopManager = {
+        xterm.enable = false;
+        xfce = {
+          enable = true;
+          noDesktop = true;
+          enableXfwm = false;
+        };
+      };
 
       # Configure keymap in X11
       layout = "us";
