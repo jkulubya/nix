@@ -16,9 +16,9 @@
       config = {
         modifier = "Mod4";
         fonts = {
-          names = ["Ubuntu, DejaVu Sans Mono, FontAwesome 6 Free"];
+          names = [ "Ubuntu" "FontAwesome 6 Free"];
           size = 11.0;
-        };    
+        };
         bars = [
           {
             position = "bottom";
@@ -72,7 +72,7 @@
           {
             alert = 10.0;
             block = "disk_space";
-            format = " $icon root: $available.eng(w:2) ";
+            format = " $icon $available.eng(w:2) available ";
             info_type = "available";
             interval = 20;
             path = "/";
@@ -80,7 +80,7 @@
           }
           {
             block = "memory";
-            format = " $icon $mem_total_used_percents.eng(w:2) ";
+            format = " $icon $mem_total_used_percents.eng(w:2) memory used ";
             format_alt = " $icon_swap $swap_used_percents.eng(w:2) ";
           }
           {
@@ -88,8 +88,11 @@
           }
           {
             block = "time";
-            format = " $timestamp.datetime(f:'%a %d/%m %R') ";
+            format = " $timestamp.datetime(f:'%a %d %b %R') ";
             interval = 5;
+          }
+          {
+            block = "battery";
           }
        ];
       };
