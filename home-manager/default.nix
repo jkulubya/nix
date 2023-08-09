@@ -53,6 +53,7 @@
     font-awesome
     gnome.gnome-keyring
     ubuntu_font_family
+    gnome.gnome-terminal
   ];
 
   programs = {

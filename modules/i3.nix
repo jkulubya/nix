@@ -1,8 +1,18 @@
-{ config, lib, pkgs, ... }: {
+{ config, lib, pkgs, ... }: 
+let 
+  mod = "Mod4";
+in
+{
   services = {
     gnome-keyring = {
       enable = true;
       components = [ "pkcs11" "secrets" "ssh" ];
+    };
+
+    screen-locker = {
+      enable = true;
+      lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
+      xautolock.enable = true;
     };
   };
 
@@ -14,11 +24,12 @@
     windowManager.i3 = {
       enable = true;
       config = {
-        modifier = "Mod4";
+        modifier = "${mod}";
         fonts = {
           names = [ "Ubuntu" "FontAwesome 6 Free"];
           size = 11.0;
         };
+        terminal = "gnome-terminal";
         bars = [
           {
             position = "bottom";
@@ -32,6 +43,8 @@
           "XF86AudioRaiseVolume" = "exec amixer -q sset Master 5%+ unmute";
           "XF86AudioLowerVolume" = "exec amixer -q sset Master 5%- unmute";
           "XF86AudioMute" = "exec amixer -q sset Master toggle";
+          "Control+${mod}+l" = "exec --no-startup-id xss-lock -- i3lock";
+
           # "${mod}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
           # "${mod}+x" = "exec sh -c '${pkgs.maim}/bin/maim -s | xclip -selection clipboard -t image/png'";
           # "${mod}+Shift+x" = "exec sh -c '${pkgs.i3lock}/bin/i3lock -c 222222 & sleep 5 && xset dpms force of'";
