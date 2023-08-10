@@ -135,6 +135,7 @@
   };
 
   programs.zsh.enable = true;
+  programs.light.enable = true;
   virtualisation.docker.enable = true;
 
   # This value determines the NixOS release from which the default

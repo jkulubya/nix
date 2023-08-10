@@ -43,6 +43,8 @@ in
           "XF86AudioRaiseVolume" = "exec amixer -q sset Master 5%+ unmute";
           "XF86AudioLowerVolume" = "exec amixer -q sset Master 5%- unmute";
           "XF86AudioMute" = "exec amixer -q sset Master toggle";
+          "XF86MonBrightnessUp" = "exec --no-startup-id light -A 5";
+          "XF86MonBrightnessDown" = "exec --no-startup-id light -U 5";
           "Control+${mod}+l" = "exec --no-startup-id xss-lock -- i3lock";
 
           # "${mod}+p" = "exec ${pkgs.dmenu}/bin/dmenu_run";
