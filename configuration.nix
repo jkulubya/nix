@@ -97,7 +97,7 @@
     users.james = {
       isNormalUser = true;
       description = "james";
-      extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" ];
+      extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" "docker" ];
     };
   };
 
@@ -135,6 +135,7 @@
   };
 
   programs.zsh.enable = true;
+  virtualisation.docker.enable = true;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
