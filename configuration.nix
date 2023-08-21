@@ -45,16 +45,8 @@
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
-
+      displayManager.gdm.enable = true;
       windowManager.i3.enable = true;
-      desktopManager = {
-        xterm.enable = false;
-        xfce = {
-          enable = true;
-          noDesktop = true;
-          enableXfwm = false;
-        };
-      };
 
       # Configure keymap in X11
       layout = "us";
@@ -119,7 +111,6 @@
         dates = "weekly";
         options = "--delete-older-than 5d";
    };
-   package = pkgs.nixVersions.unstable;
    extraOptions = ''
        experimental-features = nix-command flakes
        keep-outputs          = true

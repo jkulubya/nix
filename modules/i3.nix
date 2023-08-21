@@ -4,11 +4,6 @@ let
 in
 {
   services = {
-    gnome-keyring = {
-      enable = true;
-      components = [ "pkcs11" "secrets" "ssh" ];
-    };
-
     screen-locker = {
       enable = true;
       lockCmd = "${pkgs.i3lock}/bin/i3lock -n -c 000000";
@@ -18,9 +13,6 @@ in
 
   xsession = {
     enable = true;
-    initExtra = ''
-      eval $(gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-    '';
     windowManager.i3 = {
       enable = true;
       config = {
