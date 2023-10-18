@@ -57,6 +57,10 @@ in
         };
       };
     };
+    profileExtra = ''
+        eval $(${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --daemonize --components=ssh,secrets,pkcs11)
+        export SSH_AUTH_SOCK
+    '';
   };
 
   programs.i3status-rust = {
