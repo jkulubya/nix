@@ -80,6 +80,14 @@
       enable = true;
       touchpad.naturalScrolling = true;
     };
+
+    logind = {
+      extraConfig = ''
+        HandlePowerKey=suspend
+        IdleAction=suspend
+        IdleActionSec=20min
+      '';
+    };
   };
 
 
