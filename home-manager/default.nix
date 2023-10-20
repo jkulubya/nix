@@ -64,6 +64,8 @@
     htop
     jetbrains.rider
     gnome.nautilus
+    kubectl
+    k9s
   ];
 
   home.file = {
