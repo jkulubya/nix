@@ -66,6 +66,8 @@
     gnome.nautilus
     kubectl
     k9s
+    inetutils
+    kubernetes-helm
   ];
 
   home.file = {
