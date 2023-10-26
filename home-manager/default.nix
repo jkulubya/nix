@@ -135,6 +135,7 @@
     };
     vim = {
       enable = true;
+      packageConfigurable = pkgs.vim-full;
       extraConfig = lib.fileContents ../dotfiles/.vimrc;
       defaultEditor = true;
     };
