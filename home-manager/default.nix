@@ -68,6 +68,14 @@
     k9s
     inetutils
     kubernetes-helm
+    spicedb-zed
+    git-credential-manager
+    unzip
+    krew
+  ];
+
+  home.sessionPath = [
+    "$HOME/.krew/bin"
   ];
 
   home.file = {
@@ -146,7 +154,8 @@
     git = {
       enable = true;
       package = pkgs.gitFull;
-      extraConfig.credential.helper = "libsecret";
+      extraConfig.credential.helper = "${pkgs.git-credential-manager}/bin/git-credential-manager";
+      extraConfig.credential.credentialStore = "secretservice";
     };
     zsh = {
       enable = true;
