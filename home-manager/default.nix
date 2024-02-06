@@ -72,6 +72,7 @@
     git-credential-manager
     unzip
     krew
+    pulumi-bin
   ];
 
   home.sessionPath = [
