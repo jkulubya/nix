@@ -129,7 +129,7 @@
               enable = true;
               crtc = 0;
               primary = true;
-              position = "0";
+              position = "0x0";
               mode = "1920x1080";
               rate = "60.05";
             };
