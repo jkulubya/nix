@@ -71,8 +71,8 @@
     spicedb-zed
     git-credential-manager
     unzip
-    krew
     pulumi-bin
+    xclip
   ];
 
   home.sessionPath = [
