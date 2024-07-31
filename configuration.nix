@@ -45,7 +45,12 @@
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
-      displayManager.gdm.enable = true;
+      desktopManager = {
+        gnome.enable = true;
+      };
+      displayManager = {
+        gdm.enable = true;
+      };
       windowManager.i3.enable = true;
 
       # Configure keymap in X11
@@ -97,7 +102,9 @@
     users.james = {
       isNormalUser = true;
       description = "james";
-      extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" "docker" ];
+      extraGroups = [ "wheel" "video" "audio" "camera" "networkmanager" "lp" "scanner" "kvm" "libvirtd" "docker"
+        "dialout" # allows arduino to access serial device
+       ];
     };
   };
 
