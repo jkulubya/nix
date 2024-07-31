@@ -31,7 +31,7 @@
   };
 
   # Set your time zone.
-  time.timeZone = "Africa/Johannesburg";
+  time.timeZone = "America/Toronto";
 
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
