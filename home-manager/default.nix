@@ -60,10 +60,10 @@
     zoom-us
     font-awesome
     ubuntu_font_family
-    gnome.gnome-terminal
+    gnome-terminal
     htop
     jetbrains.rider
-    gnome.nautilus
+    nautilus
     kubectl
     k9s
     inetutils
@@ -185,15 +185,15 @@
     enable = true;
     theme = {
       name = "Adwaita";
-      package = "${pkgs.gnome.gnome-themes-extra}";
+      package = "${pkgs.gnome-themes-extra}";
     };
     iconTheme = {
       name = "Adwaita";
-      package = "${pkgs.gnome.gnome-themes-extra}";
+      package = "${pkgs.gnome-themes-extra}";
     };
     cursorTheme = {
       name = "Adwaita";
-      package = "${pkgs.gnome.gnome-themes-extra}";
+      package = "${pkgs.gnome-themes-extra}";
     };
   };
 

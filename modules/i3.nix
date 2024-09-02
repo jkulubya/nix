@@ -59,7 +59,7 @@ in
     };
     profileExtra = ''
         eval $(dbus-update-activation-environment --all)
-        eval $(${pkgs.gnome.gnome-keyring}/bin/gnome-keyring-daemon --daemonize --components=ssh,secrets,pkcs11)
+        eval $(${pkgs.gnome-keyring}/bin/gnome-keyring-daemon --daemonize --components=ssh,secrets,pkcs11)
         export SSH_AUTH_SOCK
     '';
   };

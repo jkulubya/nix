@@ -36,8 +36,6 @@
   # Select internationalisation properties.
   i18n.defaultLocale = "en_GB.UTF-8";
 
-  # Enable sound with pipewire.
-  sound.enable = true;
   hardware.pulseaudio.enable = false;
   security.rtkit.enable = true;
 
@@ -54,8 +52,10 @@
       windowManager.i3.enable = true;
 
       # Configure keymap in X11
-      layout = "us";
-      xkbVariant = "";
+      xkb = {
+        layout = "us";
+        variant = "";
+      };
     };
 
     # Enable CUPS to print documents.
@@ -81,7 +81,7 @@
     };
 
     # Enable touchpad support (enabled default in most desktopManager).
-    xserver.libinput = {
+    libinput = {
       enable = true;
       touchpad.naturalScrolling = true;
     };
