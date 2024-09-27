@@ -73,6 +73,7 @@
     unzip
     pulumi-bin
     xclip
+    kdePackages.kmines
   ];
 
   home.sessionPath = [
