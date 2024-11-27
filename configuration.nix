@@ -54,7 +54,7 @@
       # Configure keymap in X11
       xkb = {
         layout = "us";
-        variant = "";
+        variant = "altgr-intl";
       };
     };
 
