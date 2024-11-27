@@ -74,6 +74,7 @@
     pulumi-bin
     xclip
     kdePackages.kmines
+    alsa-utils
   ];
 
   home.sessionPath = [
