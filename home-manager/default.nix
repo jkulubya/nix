@@ -75,6 +75,7 @@
     xclip
     kdePackages.kmines
     alsa-utils
+    stgit
   ];
 
   home.sessionPath = [
