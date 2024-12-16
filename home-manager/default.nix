@@ -25,63 +25,6 @@
       #     patches = [ ./change-hello-to-hi.patch ];
       #   });
       # })
-      (final: prev: {
-        jetbrains = prev.jetbrains // {
-          rider = prev.jetbrains.rider.overrideAttrs (
-            attrs: rec {
-              postInstall = (attrs.postInstall or "") + lib.optionalString (prev.stdenv.hostPlatform.isLinux) ''
-                  (
-                    cd $out/rider
-
-                    ls -d $PWD/plugins/cidr-debugger-plugin/bin/lldb/linux/*/lib/python3.8/lib-dynload/* |
-                    xargs patchelf \
-                      --replace-needed libssl.so.10 libssl.so \
-                      --replace-needed libcrypto.so.10 libcrypto.so \
-                      --replace-needed libcrypt.so.1 libcrypt.so
-
-                    for dir in lib/ReSharperHost/linux-*; do
-                      rm -rf $dir/dotnet
-                      ln -s ${prev.dotnet-sdk_7.unwrapped}/share/dotnet $dir/dotnet
-                    done
-
-                    # avalonia stuff, for dotmemory
-                    extra="${final.lib.makeLibraryPath extraLdPath}"
-                    echo "extra: $extra"
-                    IFS=':' 
-                    for libpath in $extra; do 
-                      ln -sf "$libpath"/* $out/rider/plugins/dotTrace.dotMemory/DotFiles/ 
-                    done
-                    unset IFS 
-
-                    interp="$(cat $NIX_CC/nix-support/dynamic-linker)"
-                    patchelf --set-rpath ${final.lib.makeLibraryPath extraLdPath} $out/rider/plugins/dotTrace.dotMemory/DotFiles/linux-x64/libSkiaSharp.so
-                    patchelf --set-interpreter $interp $out/rider/plugins/dotTrace.dotMemory/DotFiles/linux-x64/JetBrains.Profilers.Rider
-
-                    jar=$(find $out -name "skiko-awt-runtime-linux-x64*.jar")
-                    ${final.jdk}/bin/jar xvf $jar libskiko-linux-x64.so
-                    patchelf --set-rpath ${final.lib.makeLibraryPath extraLdPath} libskiko-linux-x64.so
-                    ${final.jdk}/bin/jar uvf $jar libskiko-linux-x64.so
-                    rm -f libskiko-linux-x64.so
-                  )
-                '';
-                extraLdPath = lib.optionals (prev.stdenv.hostPlatform.isLinux) [
-                  final.icu
-                  final.udev
-                  final.xorg.libX11
-                  final.xorg.libICE
-                  final.xorg.libSM
-                  final.mesa
-                  final.fontconfig
-                  final.gtk3
-                  final.libGL
-                  final.libglvnd
-                  final.libGLU
-                  final.stdenv.cc.cc
-                ];
-          }
-        );
-       };
-      })
     ];
     # Configure your nixpkgs instance
     config = {
