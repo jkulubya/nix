@@ -67,7 +67,7 @@
     kdePackages.kmines
     alsa-utils
     stgit
-    dotnetCorePackages.sdk_8_0_3xx
+    dotnetCorePackages.dotnet_9.sdk
   ];
 
   home.sessionPath = [
