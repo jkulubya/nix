@@ -7,6 +7,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
+      inputs.nixos-hardware.nixosModules.dell-latitude-5520
       inputs.home-manager.nixosModules.home-manager
     ];
 
