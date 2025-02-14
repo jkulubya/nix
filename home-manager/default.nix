@@ -68,6 +68,11 @@
     alsa-utils
     stgit
     dotnetCorePackages.dotnet_9.sdk
+    guitarix
+    scarlett2
+    alsa-scarlett-gui
+    qjackctl
+    pavucontrol
   ];
 
   home.sessionPath = [
