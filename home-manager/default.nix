@@ -42,8 +42,8 @@
   };
 
   # Add stuff for your user as you see fit:
-  home.packages = with pkgs; [ 
-    azuredatastudio
+  home.packages = with pkgs; [
+    docker-compose
     firefox
     hstr
     tailscale
@@ -73,10 +73,6 @@
     alsa-scarlett-gui
     qjackctl
     pavucontrol
-  ];
-
-  home.sessionPath = [
-    "$HOME/.krew/bin"
   ];
 
   home.file = {
