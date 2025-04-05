@@ -7,7 +7,7 @@
   imports =
     [ # Include the results of the hardware scan.
       ./hardware-configuration.nix
-      inputs.nixos-hardware.nixosModules.dell-latitude-5520
+      inputs.nixos-hardware.nixosModules.framework-13-7040-amd
       inputs.home-manager.nixosModules.home-manager
     ];
 
@@ -15,17 +15,8 @@
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Setup keyfile
-  boot.initrd.secrets = {
-    "/crypto_keyfile.bin" = null;
-  };
-
-  # Enable swap on luks
-  boot.initrd.luks.devices."luks-742887e3-845e-49e1-b1ad-ad9123e65dd6".device = "/dev/disk/by-uuid/742887e3-845e-49e1-b1ad-ad9123e65dd6";
-  boot.initrd.luks.devices."luks-742887e3-845e-49e1-b1ad-ad9123e65dd6".keyFile = "/crypto_keyfile.bin";
-
   networking = {
-    hostName = "laptop-dell";
+    hostName = "laptop";
 
     # Enable networking
     networkmanager.enable = true;
@@ -40,11 +31,12 @@
   security.rtkit.enable = true;
 
   services = {
+    fwupd.enable = true;
     xserver = {
       # Enable the X11 windowing system.
       enable = true;
       desktopManager = {
-        gnome.enable = true;
+        gnome.enable = false;
       };
       displayManager = {
         gdm.enable = true;

@@ -1,3 +1,3 @@
 ```
-sudo nixos-rebuild switch --flake .#laptop-dell
+sudo nixos-rebuild switch --flake .#laptop
 ```

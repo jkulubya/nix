@@ -7,10 +7,10 @@
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
   outputs = { self, nixpkgs, home-manager, nixos-hardware }@inputs: {
-    nixosConfigurations.laptop-dell = nixpkgs.lib.nixosSystem {
+    nixosConfigurations.laptop = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       specialArgs = { inherit inputs; };
-      modules = [ ./configuration.nix ];
+      modules = [ ./configuration.nix ./machines/laptop.nix ];
     };
   };
 }
