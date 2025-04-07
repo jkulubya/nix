@@ -85,8 +85,11 @@
         IdleActionSec=20min
       '';
     };
+
+    gnome.gnome-keyring.enable = true;
   };
 
+  security.pam.services.james.enableGnomeKeyring = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users = {
