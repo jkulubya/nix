@@ -163,29 +163,6 @@
     };
   };
 
-  services = {
-    gnome-keyring = {
-      enable = true;
-      components = [ "pkcs11" "secrets" "ssh" ];
-    };
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      name = "Adwaita";
-      package = "${pkgs.gnome-themes-extra}";
-    };
-    iconTheme = {
-      name = "Adwaita";
-      package = "${pkgs.gnome-themes-extra}";
-    };
-    cursorTheme = {
-      name = "Adwaita";
-      package = "${pkgs.gnome-themes-extra}";
-    };
-  };
-
   fonts.fontconfig.enable = true;
 
   # Nicely reload system units when changing configs
