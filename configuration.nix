@@ -82,7 +82,7 @@
       extraConfig = ''
         HandlePowerKey=suspend
         IdleAction=suspend
-        IdleActionSec=20min
+        IdleActionSec=5min
       '';
     };
 
