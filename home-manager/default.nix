@@ -94,7 +94,7 @@
           };
           config = {
             "eDP-1" = {
-              enable = true;
+              enable = false;
               crtc = 0;
               # primary = true;
               position = "1280x0";
