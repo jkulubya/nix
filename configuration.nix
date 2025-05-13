@@ -137,6 +137,7 @@
 
   programs.zsh.enable = true;
   programs.light.enable = true;
+  programs.i3lock.enable = true;
   virtualisation.docker.enable = true;
 
   # This value determines the NixOS release from which the default
